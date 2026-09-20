@@ -1,0 +1,25 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "site/images/uploads"
+public_folder: "/images/uploads"
+
+locale: "fr"
+
+collections:
+  - name: "portfolio"
+    label: "Portfolio"
+    files:
+      - file: "site/portfolio.json"
+        label: "Galerie photos"
+        name: "gallery"
+        fields:
+          - label: "Photos"
+            name: "photos"
+            widget: "list"
+            label_singular: "Photo"
+            summary: "{{caption}}"
+            fields:
+              - {label: "Image", name: "image", widget: "image"}
+              - {label: "Légende (optionnelle)", name: "caption", widget: "string", required: false}
