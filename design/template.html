@@ -84,6 +84,25 @@
 
   @media (max-width: 880px){
     .orbit-wrap{ width:58vw; right:50%; margin-right:-29vw; opacity:.55 !important; }
+
+    /* Optimisations de performance mobile : le flou (backdrop-filter) et les
+       animations de filter/box-shadow sont tres couteux sur les GPU Android
+       d'entree/moyenne gamme et provoquent des saccades pendant le scroll. */
+    .site-nav{ backdrop-filter:none !important; background:oklch(12% 0.012 45 / .97) !important; }
+    .float-card{ backdrop-filter:none !important; background:oklch(22% 0.015 55 / .92) !important; }
+    .social-btn{ animation:none !important; }
+    .social-btn.ig{ animation:none !important; filter:none !important; }
+    .dust:nth-child(3n){ display:none; }
+    #orbit-lens .spin, #orbit-studiolight .spin{ animation-duration:14s; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration:.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.001ms !important;
+      scroll-behavior:auto !important;
+    }
   }
 
   /* Rainbow shimmer text, like Ancestral Light AI */
@@ -120,7 +139,7 @@
   .aperture-glow{ position:absolute; top:50%; left:50%; width:200px; height:200px; margin:-100px 0 0 -100px; border-radius:50%; background:radial-gradient(circle, oklch(78% 0.13 85 / .35), transparent 70%); animation:breathe 2.4s ease-in-out infinite; }
   @keyframes breathe{ 0%,100%{ transform:scale(.85); opacity:.6; } 50%{ transform:scale(1.2); opacity:1; } }
 
-  .float-card{ animation:cardfloat 7s ease-in-out infinite; }
+  .float-card{ animation:cardfloat 7s ease-in-out infinite; will-change:transform; }
   @keyframes cardfloat{
     0%,100%{ transform:translateY(0); }
     50%{ transform:translateY(-12px); }
@@ -239,7 +258,7 @@
 </div>
 
 <!-- NAV -->
-<div style="position:sticky; top:0; z-index:50; backdrop-filter:blur(14px); background:oklch(14% 0.012 45 / .86); border-bottom:1px solid oklch(32% 0.02 50); color:oklch(96% 0.008 80)">
+<div class="site-nav" style="position:sticky; top:0; z-index:50; backdrop-filter:blur(14px); background:oklch(14% 0.012 45 / .86); border-bottom:1px solid oklch(32% 0.02 50); color:oklch(96% 0.008 80)">
   <div class="wrap" style="display:flex; align-items:center; gap:28px; padding:14px 28px">
     <div style="display:flex; align-items:center; gap:16px; margin-right:auto">
       <img src="__ICON_LIGHT__" alt="" style="height:64px; width:auto">
@@ -500,8 +519,15 @@
     });
   }
 
-  window.addEventListener('scroll', update, { passive:true });
-  window.addEventListener('resize', update);
+  let ticking = false;
+  function onScroll(){
+    if(!ticking){
+      window.requestAnimationFrame(()=>{ update(); ticking = false; });
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  window.addEventListener('resize', onScroll, { passive:true });
   update();
 })();
 </script>
