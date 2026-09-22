@@ -15,11 +15,43 @@ collections:
         label: "Galerie photos"
         name: "gallery"
         fields:
-          - label: "Photos"
-            name: "photos"
+          - label: "Événementiel"
+            name: "evenementiel"
             widget: "list"
             label_singular: "Photo"
             summary: "{{caption}}"
+            min: 0
+            max: 5
+            fields:
+              - {label: "Image", name: "image", widget: "image"}
+              - {label: "Légende (optionnelle)", name: "caption", widget: "string", required: false}
+          - label: "Portrait"
+            name: "portrait"
+            widget: "list"
+            label_singular: "Photo"
+            summary: "{{caption}}"
+            min: 0
+            max: 5
+            fields:
+              - {label: "Image", name: "image", widget: "image"}
+              - {label: "Légende (optionnelle)", name: "caption", widget: "string", required: false}
+          - label: "Studio"
+            name: "studio"
+            widget: "list"
+            label_singular: "Photo"
+            summary: "{{caption}}"
+            min: 0
+            max: 5
+            fields:
+              - {label: "Image", name: "image", widget: "image"}
+              - {label: "Légende (optionnelle)", name: "caption", widget: "string", required: false}
+          - label: "Photoshoot"
+            name: "photoshoot"
+            widget: "list"
+            label_singular: "Photo"
+            summary: "{{caption}}"
+            min: 0
+            max: 5
             fields:
               - {label: "Image", name: "image", widget: "image"}
               - {label: "Légende (optionnelle)", name: "caption", widget: "string", required: false}
