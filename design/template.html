@@ -404,11 +404,12 @@
       </div>`;
 
     function renderPanel(panel, photos){
-      if (!photos.length){
-        panel.innerHTML = placeholderCard(0) + placeholderCard(-1.5);
-        return;
+      const cards = photos.map((p, i) => photoCard(p, -1.5 * (i % 4)));
+      const remaining = Math.max(0, 5 - photos.length);
+      for (let i = 0; i < remaining; i++){
+        cards.push(placeholderCard(-1.5 * ((photos.length + i) % 4)));
       }
-      panel.innerHTML = photos.map((p, i) => photoCard(p, -1.5 * (i % 4))).join('');
+      panel.innerHTML = cards.join('');
     }
 
     fetch('portfolio.json').then(r => r.ok ? r.json() : null).then(data => {
