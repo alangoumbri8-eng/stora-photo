@@ -25,12 +25,15 @@ Déplacement en région sur demande.
 - `/admin` sur le site → Decap CMS pour ajouter des photos au portfolio sans coder
 - Identity activé sur Netlify ✅
 - Git Gateway activé sur Netlify ✅
-- **En attente** : email du client (Stora) pour lui envoyer l'invitation Identity (Netlify → Identity → Invite users). Stora n'était pas joignable au moment de la mise en ligne — à faire dès qu'Alan a l'adresse email.
+- Email du client : storaphotography@gmail.com — **invitation envoyée le 2026-09-22** ✅
+- Guide illustré PDF créé pour Stora (non-technique) : `Guide-Stora-Ajouter-Photos.pdf` (aussi dans Téléchargements), à lui envoyer par WhatsApp
+- Optimisations de performance mobile appliquées (Android) : scroll throttlé en requestAnimationFrame, backdrop-filter et animations de filter/box-shadow désactivées sur petit écran, moins de particules décoratives
 
 ## Points ouverts (non bloquants)
 - Photos manquantes : un seul angle photo pour l'objectif et le flash studio (animation "bascule" au lieu d'une vraie rotation comme la caméra)
 - Filigrane "@foccus_labs" sur 2 photos de la caméra à remplacer
 - Décision tarifs (voir ci-dessus)
+- Confirmer avec Stora que l'invitation Identity est bien arrivée et qu'il a pu créer son mot de passe
 
 ## Statut
-Site en ligne et public. Structure admin prête, il ne manque que l'invitation email du client pour qu'il puisse ajouter ses photos lui-même.
+Site en ligne, public, et opérationnel. Client invité à l'espace admin, guide PDF prêt à lui envoyer. Il ne reste que les points ouverts ci-dessus, aucun n'est bloquant.
